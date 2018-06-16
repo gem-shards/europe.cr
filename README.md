@@ -2,7 +2,7 @@
 
 # Europe.cr
 
-This shard provides EU governmental data, extracted from various EU / EC websites. With this shard you can validate VAT numbers, retrieve VAT tax rates and currency exchange rates matched to the Euro. How to use this gem is pretty straightforward and written below.
+This shard provides EU governmental data, extracted from various EU / EC websites. With this shard you can validate VAT numbers, retrieve VAT tax rates and currency exchange rates matched to the Euro. How to use this library is pretty straightforward and written below.
 
 ## Table of Contents
 - [Installation](#installation)
