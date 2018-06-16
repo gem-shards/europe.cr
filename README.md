@@ -1,4 +1,5 @@
-![Europe gem logo](https://s3-eu-west-1.amazonaws.com/valorsis.s3-website-eu-west-1.amazonaws.com/static/logo256.png)
+[![GitHub release](https://img.shields.io/github/release/VvanGemert/europe.cr.svg)](https://github.com/VvanGemert/europe.cr/releases)
+
 # Europe.cr
 
 This shard provides EU governmental data, extracted from various EU / EC websites. With this shard you can validate VAT numbers, retrieve VAT tax rates and currency exchange rates matched to the Euro. How to use this gem is pretty straightforward and written below.
