@@ -2,8 +2,8 @@ require "http/client"
 
 module Europe
   module Vat
-    URL     = "http://ec.europa.eu/taxation_customs/vies/" \
-              "services/checkVatService"
+    URL = "http://ec.europa.eu/taxation_customs/vies/" \
+          "services/checkVatService"
     HEADERS = HTTP::Headers{"Content-Type" => "text/xml;charset=UTF-8",
                             "SOAPAction"   => ""}
 
@@ -38,12 +38,12 @@ module Europe
       body = body.gsub("{NUMBER}", number)
       response = HTTP::Client.post(URL, headers: HEADERS, body: body)
       {
-        valid: /<valid>(.*)<\/valid>/.match(response.body).try &.[1] == "true",
+        valid:        /<valid>(.*)<\/valid>/.match(response.body).try &.[1] == "true",
         country_code: /<countryCode>(.*)<\/countryCode>/.match(response.body).try &.[1],
-        vat_number: /<vatNumber>(.*)<\/vatNumber>/.match(response.body).try &.[1],
+        vat_number:   /<vatNumber>(.*)<\/vatNumber>/.match(response.body).try &.[1],
         request_date: /<requestDate>(.*)<\/requestDate>/.match(response.body).try &.[1],
-        name: /<name>(.*)<\/name>/.match(response.body).try &.[1],
-        address: /<address>(.*)<\/address>/.match(response.body).try &.[1]
+        name:         /<name>(.*)<\/name>/.match(response.body).try &.[1],
+        address:      /<address>(.*)<\/address>/.match(response.body).try &.[1],
       }
     end
   end
