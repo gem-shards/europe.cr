@@ -32,14 +32,14 @@ module Europe
         "SK" => /^SK\d{10}$/,
       }
 
-      def self.validate(number)
+      def self.validate(number : String)
         country_code = number[0..1]
         number = sanitize_number(number, country_code)
         return false unless VAT_REGEX.keys.includes?(country_code)
         match_vat_number(number, country_code)
       end
 
-      def self.sanitize_number(number, country_code)
+      def self.sanitize_number(number : String, country_code : String)
         if ["GB", "DK", "FR"].includes?(country_code)
           number.gsub(/\.|\t/, "").upcase
         else
@@ -47,7 +47,7 @@ module Europe
         end
       end
 
-      def self.match_vat_number(number, country_code)
+      def self.match_vat_number(number : String, country_code : String)
         if VAT_REGEX[country_code].is_a?(Array)
           VAT_REGEX[country_code].as(Array).each do |regex|
             return true if regex.match(number)

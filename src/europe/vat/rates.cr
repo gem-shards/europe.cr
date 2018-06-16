@@ -13,7 +13,7 @@ module Europe
         extract_rates(response.body)
       end
 
-      def self.extract_rates(html_string)
+      def self.extract_rates(html_string : String)
         xml = XML.parse_html(html_string)
         data = xml.xpath_node(
           "//div[@id='eucontentpage']/xhtml_fragment/div[1]/table/tbody"

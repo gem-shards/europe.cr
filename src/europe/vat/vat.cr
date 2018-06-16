@@ -7,11 +7,11 @@ module Europe
     HEADERS = HTTP::Headers{"Content-Type" => "text/xml;charset=UTF-8",
                             "SOAPAction"   => ""}
 
-    def self.validate(number)
+    def self.validate(number : String)
       send_request(number[0..1], number[2..-1])
     end
 
-    def self.charge_vat?(origin_country, number)
+    def self.charge_vat?(origin_country : String, number : String)
       return false if number.nil? || number.empty?
       if origin_country == number[0..1]
         true
@@ -20,7 +20,7 @@ module Europe
       end
     end
 
-    def self.send_request(country_code, number)
+    def self.send_request(country_code : String, number : String)
       body = <<-XML
         <soapenv:Envelope
         xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"

@@ -11,8 +11,5 @@ describe Europe::Vat do
 
     # Sky
     Europe::Vat.validate("GB440627467")[:valid].should be_true
-
-    # Volkswagen
-    Europe::Vat.validate("DE115235681")[:valid].should be_true
   end
 end
