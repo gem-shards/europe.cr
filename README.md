@@ -45,12 +45,12 @@ Europe::Vat.validate("GB440627467")
 ```
 Response
 ```crystal
-{ :country_code=>"GB",
-  :vat_number=>"440627467",
-  :request_date=>#<Date: 2015-12-15 ((2457372j,0s,0n),+0s,2299161j)>,
-  :valid=>true,
-  :name=>"SKY PLC",
-  :address=>"6 CENTAURS BUSINESS PARK\nGRANT WAY\nISLEWORTH\nMIDDLESEX\n\nTW7 5QD" }
+{ valid: true,
+  country_code: "GB",
+  vat_number: "440627467",
+  request_date: "2018-06-16+02:00",
+  name: "SKY PLC",
+  address: nil }
 ```
 
 ### Validate VAT number format
@@ -88,8 +88,8 @@ Europe::Currency::ExchangeRates.retrieve
 ```
 Response
 ```crystal
-{  :date=>#<Date: 2015-12-15 ((2457372j,0s,0n),+0s,2299161j)>,
-   :rates=>
+{  :date => 2018-06-15 00:00:00.0 UTC,
+   :rates =>
    { "USD" => 1.099,
      "JPY" => 132.97,
      "BGN" => 1.9558,
@@ -107,8 +107,8 @@ Europe::Currency::CURRENCIES
 Response
 ```crystal
 CURRENCIES = {
-  EUR: { name: 'Euro', symbol: '€', html: '&euro;' },
-  BGN: { name: 'Lev', symbol: 'лв', html: '&#1083;&#1074;' },
+  EUR: { name: "Euro", symbol: "€", html: "&euro;" },
+  BGN: { name: "Lev", symbol: "лв", html: "&#1083;&#1074;" },
   # etc...
 ```
 
@@ -120,27 +120,27 @@ Europe::Countries::COUNTRIES
 Response
 ```crystal
 {
- :BE=>
-  {:name=>"Belgium",
-   :source_name=>"Belgique/België",
-   :official_name=>"Kingdom of Belgium",
-   :tld=>".be",
-   :currency=>:EUR,
-   :capital=>"Brussels"},
- :BG=>
-  {:name=>"Bulgaria",
-   :source_name=>"България",
-   :official_name=>"Republic of Bulgaria",
-   :tld=>".bg",
-   :currency=>:BGN,
-   :capital=>"Sofia"},
+ BE:
+  {name: "Belgium",
+   source_name: "Belgique/België",
+   official_name: "Kingdom of Belgium",
+   tld: ".be",
+   currency: "EUR",
+   capital: "Brussels"},
+ BG:
+  {name: "Bulgaria",
+   source_name: "България",
+   official_name: "Republic of Bulgaria",
+   tld: ".bg",
+   currency: "BGN",
+   capital: "Sofia"},
  # etc...
 ```
 
 ## Retrieving country information reversed
 Call with optional parameters (name, currency, source_name, official_name, tld, currency and capital)
 ```crystal
-Europe::Countries::Reversed.generate("name")
+Europe::Countries::Reversed.generate(:name)
 ```
 Response
 ```crystal
