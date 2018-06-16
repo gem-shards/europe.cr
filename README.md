@@ -162,13 +162,14 @@ This library is tested with the following Crystal versions on Linux and Mac OS X
 
 ## Todo
 
+- Generate docs
 - Cleanup the code
 - Eurostat integration (http://ec.europa.eu/eurostat/)
 - ..
 
 ## Contributing
 
-1. Fork it ( https://github.com/[your-github-name]/europe.cr/fork )
+1. Fork it ( https://github.com/VvanGemert/europe.cr/fork )
 2. Create your feature branch (git checkout -b my-new-feature)
 3. Commit your changes (git commit -am 'Add some feature')
 4. Push to the branch (git push origin my-new-feature)
@@ -176,4 +177,4 @@ This library is tested with the following Crystal versions on Linux and Mac OS X
 
 ## Contributors
 
-- [[your-github-name]](https://github.com/[your-github-name]) vvangemert - creator, maintainer
+- [VvanGemert](https://github.com/VvanGemert) vvangemert - creator, maintainer
