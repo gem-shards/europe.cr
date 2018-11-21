@@ -21,7 +21,7 @@ module Europe
         data["rates"].as_a.each do |object|
           rates[object["code"].to_s] =
             object["periods"].as_a.first["rates"]["standard"].to_s
-                             .gsub(".0","").to_i32
+              .gsub(".0", "").to_i32
         end
         rates
       end

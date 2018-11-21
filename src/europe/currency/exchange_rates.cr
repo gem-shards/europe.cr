@@ -14,13 +14,13 @@ module Europe
       def self.extract_rates(json_string)
         data = JSON.parse(json_string)
         rates = {
-          date: parse_time(data["usd"]["date"].to_s),
+          date:  parse_time(data["usd"]["date"].to_s),
           rates: {} of String => Float64,
         }
 
         data.as_h.keys.each do |currency|
           rates[:rates][currency.upcase] =
-          data[currency]["rate"].to_s.to_f
+            data[currency]["rate"].to_s.to_f
         end
         rates
       end
@@ -41,8 +41,19 @@ module Europe
 
       def self.parse_month(month : String)
         case month
+        when "Jan" then 1
+        when "Feb" then 2
+        when "Mar" then 3
+        when "Apr" then 4
+        when "May" then 5
+        when "Jun" then 6
+        when "Jul" then 7
+        when "Aug" then 8
+        when "Sep" then 9
+        when "Oct" then 10
         when "Nov" then 11
-        else 1
+        when "Dec" then 12
+        else            1
         end
       end
     end
