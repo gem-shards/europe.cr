@@ -1,11 +1,10 @@
 require "http/client"
-require "xml"
+require "json"
 
 module Europe
   module Vat
     module Rates
-      RATES_URL = "https://europa.eu/youreurope/business/" \
-                  "vat-customs/buy-sell/vat-rates/index_en.htm"
+      RATES_URL = "https://jsonvat.com"
 
       def self.retrieve
         response = HTTP::Client.get(RATES_URL)
@@ -13,21 +12,17 @@ module Europe
         extract_rates(response.body)
       end
 
-      def self.extract_rates(html_string : String)
-        xml = XML.parse_html(html_string)
-        data = xml.xpath_node(
-          "//div[@id='eucontentpage']/xhtml_fragment/div[1]/table/tbody"
-        )
+      def self.extract_rates(json_string : String)
+        data = JSON.parse(json_string)
 
         rates = {} of String => Int32
         return rates unless data
 
-        data.children.select(&.element?).each_with_index do |node, index|
-          next if index < 2
-          rates[node.children[3].children[0].content] =
-            node.children[5].children[0].content.to_i
+        data["rates"].as_a.each do |object|
+          rates[object["code"].to_s] =
+            object["periods"].as_a.first["rates"]["standard"].to_s
+                             .gsub(".0","").to_i32
         end
-
         rates
       end
     end
