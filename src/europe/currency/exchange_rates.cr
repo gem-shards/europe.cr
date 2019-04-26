@@ -4,7 +4,7 @@ require "json"
 module Europe
   module Currency
     module ExchangeRates
-      EXCHANGE_URL = "https://floatrates.com/daily/eur.json"
+      EXCHANGE_URL = "http://floatrates.com/daily/eur.json"
 
       def self.retrieve
         response = HTTP::Client.get(EXCHANGE_URL)
