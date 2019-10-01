@@ -23,12 +23,14 @@ module Europe
             data[currency]["rate"].to_s.to_f
         end
         rates
+      rescue JSON::ParseException
+        :failed
       end
 
       def self.parse_time(time : String)
         splitted_date = time.split(" ")
         splitted_time = splitted_date[4].split(":")
-        Time.new(
+        Time.local(
           splitted_date[3].to_i32,
           parse_month(splitted_date[2]).to_i32,
           splitted_date[1].to_i32,

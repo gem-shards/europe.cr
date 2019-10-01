@@ -158,9 +158,7 @@ Response
 
 This library is tested with the following Crystal versions on Linux and Mac OS X:
 
-- 0.27.x
-- 0.28.0
-- 0.29.0
+- 0.31.1
 
 ## Todo
 

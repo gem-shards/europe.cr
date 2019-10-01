@@ -1,9 +1,9 @@
 name: europe.cr
-version: 0.1.6
+version: 0.1.7
 
 authors:
   - vvangemert <vincent@floorplanner.com>
 
-crystal: 0.30.0
+crystal: 0.31.1
 
 license: MIT
