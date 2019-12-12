@@ -5,6 +5,20 @@ module Europe
   module Currency
     module ExchangeRates
       EXCHANGE_URL = "http://floatrates.com/daily/eur.json"
+      MONTHS_TO_INTEGER = {
+        "Jan" => 1,
+        "Feb" => 2,
+        "Mar" => 3,
+        "Apr" => 4,
+        "May" => 5,
+        "Jun" => 6,
+        "Jul" => 7,
+        "Aug" => 8,
+        "Sep" => 9,
+        "Oct" => 10,
+        "Nov" => 11,
+        "Dec" => 12
+      }
 
       def self.retrieve
         response = HTTP::Client.get(EXCHANGE_URL)
@@ -42,21 +56,7 @@ module Europe
       end
 
       def self.parse_month(month : String)
-        case month
-        when "Jan" then 1
-        when "Feb" then 2
-        when "Mar" then 3
-        when "Apr" then 4
-        when "May" then 5
-        when "Jun" then 6
-        when "Jul" then 7
-        when "Aug" then 8
-        when "Sep" then 9
-        when "Oct" then 10
-        when "Nov" then 11
-        when "Dec" then 12
-        else            1
-        end
+        MONTHS_TO_INTEGER.dig?(month) || 1
       end
     end
   end

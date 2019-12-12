@@ -13,4 +13,12 @@ describe Europe::Currency::ExchangeRates do
     response.should be_a Symbol
     response.should eq :failed
   end
+
+  it "should parse date based on string month name" do
+    Europe::Currency::ExchangeRates.parse_month("Jun").should eq 6
+  end
+
+  it "should parse wrong month name to 1" do
+    Europe::Currency::ExchangeRates.parse_month("Fake").should eq 1
+  end
 end
