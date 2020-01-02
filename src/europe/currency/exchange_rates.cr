@@ -4,7 +4,7 @@ require "json"
 module Europe
   module Currency
     module ExchangeRates
-      EXCHANGE_URL = "http://floatrates.com/daily/eur.json"
+      EXCHANGE_URL      = "http://floatrates.com/daily/eur.json"
       MONTHS_TO_INTEGER = {
         "Jan" => 1,
         "Feb" => 2,
@@ -17,7 +17,7 @@ module Europe
         "Sep" => 9,
         "Oct" => 10,
         "Nov" => 11,
-        "Dec" => 12
+        "Dec" => 12,
       }
 
       def self.retrieve
@@ -56,7 +56,7 @@ module Europe
       end
 
       def self.parse_month(month : String)
-        MONTHS_TO_INTEGER.dig?(month) || 1
+        MONTHS_TO_INTEGER[month]? || 1
       end
     end
   end
