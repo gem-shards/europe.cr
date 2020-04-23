@@ -4,7 +4,7 @@ require "json"
 module Europe
   module Vat
     module Rates
-      RATES_URL = "https://jsonvat.com"
+      RATES_URL = "https://euvat.ga/rates.json"
 
       def self.retrieve
         response = HTTP::Client.get(RATES_URL)
@@ -17,12 +17,11 @@ module Europe
 
         rates = {} of String => Int32
         return rates unless data
-
-        data["rates"].as_a.each do |object|
-          rates[object["code"].to_s] =
-            object["periods"].as_a.first["rates"]["standard"].to_s
-              .gsub(".0", "").to_i32
+        data["rates"].as_h.each do |country, data|
+          rates[country.to_s] =
+            data["standard_rate"].to_s.gsub(".0", "").to_i32
         end
+
         rates
       end
     end

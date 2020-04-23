@@ -6,7 +6,7 @@ describe Europe::Vat::Rates do
     if rates.includes?("failed")
       rates = {"NL" => 17, "DE" => 19, "ES" => 18}
     else
-      rates.size.should eq Europe::Countries::COUNTRIES.size
+      (rates.size > 20).should be_true
     end
 
     rates.keys.includes?("NL").should be_true
