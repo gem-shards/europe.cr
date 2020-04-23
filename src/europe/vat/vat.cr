@@ -2,7 +2,7 @@ require "http/client"
 
 module Europe
   module Vat
-    URL = "http://ec.europa.eu/taxation_customs/vies/" \
+    URL = "https://ec.europa.eu/taxation_customs/vies/" \
           "services/checkVatService"
     HEADERS = HTTP::Headers{"Content-Type" => "text/xml;charset=UTF-8",
                             "SOAPAction"   => ""}
