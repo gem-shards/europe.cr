@@ -1,6 +1,6 @@
-[![GitHub release](https://img.shields.io/github/release/VvanGemert/europe.cr.svg)](https://github.com/VvanGemert/europe.cr/releases)
+[![GitHub release](https://img.shields.io/github/release/gem-shards/europe.cr.svg)](https://github.com/gem-shards/europe.cr/releases)
 
-# Europe.cr
+# Europe.cr :eu:
 
 This shard provides EU governmental data, extracted from various EU / EC websites. With this shard you can validate VAT numbers, retrieve VAT tax rates and currency exchange rates matched to the Euro. How to use this library is pretty straightforward and written below.
 
@@ -25,7 +25,7 @@ Add this to your application's `shard.yml`:
 ```yaml
 dependencies:
   europe:
-    github: VvanGemert/europe.cr
+    github: gem-shards/europe.cr
 ```
 
 ## Usage
@@ -172,7 +172,7 @@ This library is tested with the following Crystal versions on Linux and Mac OS X
 
 ## Contributing
 
-1. Fork it ( https://github.com/VvanGemert/europe.cr/fork )
+1. Fork it ( https://github.com/gem-shards/europe.cr/fork )
 2. Create your feature branch (git checkout -b my-new-feature)
 3. Commit your changes (git commit -am 'Add some feature')
 4. Push to the branch (git push origin my-new-feature)
@@ -180,4 +180,4 @@ This library is tested with the following Crystal versions on Linux and Mac OS X
 
 ## Contributors
 
-- [VvanGemert](https://github.com/VvanGemert) vvangemert - creator, maintainer
+- [gem-shards](https://github.com/gem-shards) gem-shards - creator, maintainer
