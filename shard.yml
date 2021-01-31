@@ -1,11 +1,11 @@
 name: europe
 
-version: 0.1.14
+version: 0.1.15
 
 authors:
   - vvangemert <vincent@gemshards.com>
 
-crystal: 0.35.1
+crystal: 0.36.0
 
 license: MIT
 

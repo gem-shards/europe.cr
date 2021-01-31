@@ -4,8 +4,9 @@ require "xml"
 module Europe
   module Vat
     module Rates
-      RATES_URL = "https://europa.eu/youreurope/business/taxation/" \
-                  "vat/vat-rules-rates/index_en.htm"
+      RATES_URL = "https://ec.europa.eu/taxation_customs/" \
+                  "business/vat/telecommunications-broadcasting" \
+                  "-electronic-services/vat-rates_en"
 
       def self.retrieve
         response = HTTP::Client.get(RATES_URL)
@@ -23,8 +24,8 @@ module Europe
           next if index < 3
           next if result.children.empty?
 
-          rates[result.children[3].children[0].to_s] =
-            result.children[5].children[0].to_s.to_i32
+          country = Europe::Countries::Reversed.generate(:name)[result.children[0].children[0].to_s]
+          rates[country.to_s] = result.children[3].children[0].to_s.to_i32
         end
 
         rates

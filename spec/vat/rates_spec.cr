@@ -3,6 +3,7 @@ require "./../spec_helper"
 describe Europe::Vat::Rates do
   it "should return VAT rates" do
     rates = Europe::Vat::Rates.retrieve
+
     if rates.includes?("failed")
       rates = {"NL" => 17, "DE" => 19, "ES" => 18}
     else
