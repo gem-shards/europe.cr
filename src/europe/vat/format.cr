@@ -14,7 +14,6 @@ module Europe
         "ES" => /^ES([A-Z0-9]\d{7}[A-Z0-9])$/,
         "FI" => /^FI\d{8}$/,
         "FR" => /^FR[A-Z0-9][A-Z0-9] \d{9}$/,
-        "GB" => [/^GB(\d{3} \d{4} \d{2}( \d{3}5)?)$/, /^GB(HA|GD)\d{3}(6|7)$/],
         "HR" => /^HR\d{11}$/,
         "HU" => /^HU\d{8}$/,
         "IE" => /^IE\d[A-Z0-9\+\*|\d]\d{5}([A-Z]|WI)$/,
@@ -40,7 +39,7 @@ module Europe
       end
 
       def self.sanitize_number(number : String, country_code : String)
-        if ["GB", "DK", "FR"].includes?(country_code)
+        if ["DK", "FR"].includes?(country_code)
           number.gsub(/\.|\t/, "").upcase
         else
           number.gsub(/\.|\t|\s/, "").upcase

@@ -13,11 +13,8 @@ module Europe
 
     def self.charge_vat?(origin_country : String, number : String)
       return false if number.nil? || number.empty?
-      if origin_country == number[0..1]
-        true
-      else
-        Europe::Countries::COUNTRIES.keys.includes?(number[0..1])
-      end
+
+      Europe::Vat::Format::VAT_REGEX.keys.includes?(number[0..1])
     end
 
     def self.send_request(country_code : String, number : String)
