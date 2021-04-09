@@ -42,15 +42,15 @@ where this library can be used for.
 ** Updated: Parameter now consists of one value.**
 Call to validate VAT number (always starts with country code as specified in VIES)
 ```crystal
-Europe::Vat.validate("GB440627467")
+Europe::Vat.validate("NL009291477B01")
 ```
 Response
 ```crystal
 { valid: true,
-  country_code: "GB",
-  vat_number: "440627467",
+  country_code: "NL",
+  vat_number: "009291477B01",
   request_date: "2018-06-16+02:00",
-  name: "SKY PLC",
+  name: "KONINKLIJKE POSTNL B.V.",
   address: nil }
 ```
 
@@ -158,11 +158,8 @@ Response
 
 This library is tested with the following Crystal versions on Linux and Mac OS X:
 
-- 0.27.x
-- 0.28.0
-- 0.29.0
-- 0.32.1
-
+- 1.0.0
+- 0.36.0
 ## Todo
 
 - Generate docs
