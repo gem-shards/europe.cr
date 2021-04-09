@@ -14,7 +14,8 @@ module Europe
     def self.charge_vat?(origin_country : String, number : String)
       return false if number.nil? || number.empty?
 
-      Europe::Vat::Format::VAT_REGEX.keys.includes?(number[0..1])
+      Europe::Vat::Format::VAT_REGEX.keys.includes?(origin_country.to_s) ||
+        Europe::Vat::Format::VAT_REGEX.keys.includes?(number[0..1])
     end
 
     def self.send_request(country_code : String, number : String)
