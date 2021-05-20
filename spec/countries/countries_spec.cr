@@ -9,7 +9,7 @@ describe Europe::Countries do
 
     reversed_currency_hash =
       Europe::Countries::Reversed.generate(:currency)
-    reversed_currency_hash["EUR"].as(Array).size.should eq 17
+    reversed_currency_hash["EUR"].as(Array).size.should eq 19
   end
 
   it "should return countries in eurozone" do
