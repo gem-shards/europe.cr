@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.0.19
+  - Updated to Crystal 1.2.0
+  - [Full Changelog](https://github.com/gem-shards/europe.cr/compare/v0.1.18...v0.1.19)
 ## 0.0.18
   - Added Estonia and Lithuania to Eurozone and changed their currency to EUR.
   - Fixed full changelog links
