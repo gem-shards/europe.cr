@@ -1,7 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
-
+## 0.0.20
+  - Updated to Crystal 1.3.2
+  - [Full Changelog](https://github.com/gem-shards/europe.cr/compare/v0.1.19...v0.1.20)
 ## 0.0.19
   - Updated to Crystal 1.2.0
   - [Full Changelog](https://github.com/gem-shards/europe.cr/compare/v0.1.18...v0.1.19)
