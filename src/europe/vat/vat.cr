@@ -36,12 +36,12 @@ module Europe
       body = body.gsub("{NUMBER}", number)
       response = HTTP::Client.post(URL, headers: HEADERS, body: body)
       {
-        valid:        /<valid>(.*)<\/valid>/.match(response.body).try &.[1] == "true",
-        country_code: /<countryCode>(.*)<\/countryCode>/.match(response.body).try &.[1],
-        vat_number:   /<vatNumber>(.*)<\/vatNumber>/.match(response.body).try &.[1],
-        request_date: /<requestDate>(.*)<\/requestDate>/.match(response.body).try &.[1],
-        name:         /<name>(.*)<\/name>/.match(response.body).try &.[1],
-        address:      /<address>(.*)<\/address>/.match(response.body).try &.[1],
+        valid:        /<ns2:valid>(.*)<\/ns2:valid>/.match(response.body).try &.[1] == "true",
+        country_code: /<ns2:countryCode>(.*)<\/ns2:countryCode>/.match(response.body).try &.[1],
+        vat_number:   /<ns2:vatNumber>(.*)<\/ns2:vatNumber>/.match(response.body).try &.[1],
+        request_date: /<ns2:requestDate>(.*)<\/ns2:requestDate>/.match(response.body).try &.[1],
+        name:         /<ns2:name>(.*)<\/ns2:name>/.match(response.body).try &.[1],
+        address:      /<ns2:address>(.*)<\/ns2:address>/.match(response.body).try &.[1],
       }
     end
   end
