@@ -158,6 +158,8 @@ Response
 
 This library is tested with the following Crystal versions on Linux and Mac OS X:
 
+- 1.6.1
+- 1.5.1
 - 1.5.0
 - 1.4.1
 - 1.2.0
