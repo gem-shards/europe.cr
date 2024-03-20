@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
+## 0.1.24
+  - Updated Estonian Tax rate to 22%
+  - [Full Changelog](https://github.com/gem-shards/europe.cr/compare/v0.1.23...v0.1.24)
 ## 0.1.23
   - Added fallback for VAT rates when they can't be retrieved from the EU service
   - [Full Changelog](https://github.com/gem-shards/europe.cr/compare/v0.1.22...v0.1.23)
