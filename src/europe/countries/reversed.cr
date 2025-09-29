@@ -1,29 +1,46 @@
 module Europe
   module Countries
+    # Provides functionality to create reversed lookups of country data
     module Reversed
-      def self.generate(country_value : Symbol)
-        rhash = {} of String => Symbol | Array(Symbol)
-        COUNTRIES.each do |key, value|
-          reverse_handle_value(rhash, key, value, country_value)
-        end
-        rhash
-      end
+      # Generate a reversed lookup hash based on a country property
+      # Returns a hash where the keys are property values and the values are country codes or arrays of country codes
+      def self.generate(property : Symbol)
+        result = {} of String => Symbol | Array(Symbol)
 
-      def self.reverse_handle_value(rhash, key, value, country_value)
-        if rhash[value[country_value]]?
-          reverse_handle_array(rhash, key, value, country_value)
-        else
-          rhash[value[country_value]] = key
-        end
-      end
+        Countries.all.each do |code, country|
+          # Get the property value based on the property symbol
+          value = case property
+                 when :name
+                   country.name
+                 when :source_name
+                   country.source_name
+                 when :official_name
+                   country.official_name
+                 when :tld
+                   country.tld
+                 when :currency
+                   country.currency
+                 when :capital
+                   country.capital
+                 else
+                   next # Skip if property not found
+                 end.to_s
 
-      def self.reverse_handle_array(rhash, key, value, country_value)
-        if rhash[value[country_value]].is_a?(Array)
-          rhash[value[country_value]].as(Array) << key.as(Symbol)
-        else
-          rhash[value[country_value]] =
-            [rhash[value[country_value]].as(Symbol), key]
+          # Add to the result hash
+          if result.has_key?(value)
+            # If we already have this value, convert to array if needed
+            if result[value].is_a?(Array)
+              result[value].as(Array) << code
+            else
+              result[value] = [result[value].as(Symbol), code]
+            end
+          else
+            # First occurrence of this value
+            result[value] = code
+          end
         end
+
+        result
       end
     end
   end

@@ -47,14 +47,18 @@ module Europe
       end
 
       def self.match_vat_number(number : String, country_code : String)
-        if VAT_REGEX[country_code].is_a?(Array)
-          VAT_REGEX[country_code].as(Array).each do |regex|
-            return true if regex.match(number)
-          end
-        elsif VAT_REGEX[country_code].as(Regex).match(number)
-          return true
+        regex = VAT_REGEX[country_code]?
+        return false unless regex
+
+        # Handle both single regex and array of regexes
+        case regex
+        when Array
+          regex.any? { |r| r.match(number) }
+        when Regex
+          regex.match(number) ? true : false
+        else
+          false
         end
-        false
       end
     end
   end

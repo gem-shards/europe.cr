@@ -1,6 +1,9 @@
+require "./country"
+
 module Europe
   module Countries
-    COUNTRIES = {
+    # Raw country data
+    COUNTRY_DATA = {
       BE: {name: "Belgium", source_name: "Belgique/België",
            official_name: "Kingdom of Belgium",
            tld: ".be", currency: "EUR", capital: "Brussels"},
@@ -88,8 +91,48 @@ module Europe
            tld: ".uk", currency: "GBP", capital: "London"},
     }
 
+    # Cache for country instances
+    @@countries : Hash(Symbol, Country)? = nil
+
+    # Get all countries as a hash of Country objects
+    def self.all
+      @@countries ||= begin
+        result = {} of Symbol => Country
+        COUNTRY_DATA.each do |code, data|
+          result[code] = Country.from_hash(code, data)
+        end
+        result
+      end
+    end
+
+    # Get a specific country by its code
+    def self.get(code : Symbol)
+      all[code]
+    end
+
+    # Find countries by a specific property value
+    def self.find_by(prop : Symbol, value : String)
+      case prop
+      when :name
+        all.values.select { |country| country.name == value }
+      when :source_name
+        all.values.select { |country| country.source_name == value }
+      when :official_name
+        all.values.select { |country| country.official_name == value }
+      when :tld
+        all.values.select { |country| country.tld == value }
+      when :currency
+        all.values.select { |country| country.currency == value }
+      when :capital
+        all.values.select { |country| country.capital == value }
+      else
+        [] of Country
+      end
+    end
+
+    # Get all countries that use the Euro
     def self.eurozone
-      Reversed.generate(:currency)["EUR"].as(Array)
+      find_by(:currency, "EUR").map(&.code)
     end
   end
 end

@@ -1,6 +1,21 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
+## 0.1.27
+  - Refactored Countries module for better maintainability and type safety
+  - Added Country class to represent country data with proper typing
+  - Simplified the Reversed lookup functionality
+  - Improved code organization and documentation
+  - [Full Changelog](https://github.com/gem-shards/europe.cr/compare/v0.1.26...v0.1.27)
+## 0.1.26
+  - Improved error handling in VAT rates retrieval
+  - Fixed type consistency between FALLBACK_RATES and extract_rates
+  - Enhanced HTML parsing robustness in VAT rates extraction
+  - Improved VAT number validation with better type handling
+  - Added proper error handling for HTTP requests
+  - Removed UK from VAT rates
+  - Fixed deprecated HTTP timeout methods using Time::Span
+  - [Full Changelog](https://github.com/gem-shards/europe.cr/compare/v0.1.25...v0.1.26)
 ## 0.1.25
   - Added support for new Belgium VAT numbers
   - Updated to Crystal 1.15.1
