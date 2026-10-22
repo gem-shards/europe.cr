@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
+## 0.1.28
+  - Fixed currency (EUR) for Croatia (oops!)
+  - Changed endpoint to fetch VAT rates
+  - [Full Changelog](https://github.com/gem-shards/europe.cr/compare/v0.1.27...v0.1.28)
 ## 0.1.27
   - Refactored Countries module for better maintainability and type safety
   - Added Country class to represent country data with proper typing

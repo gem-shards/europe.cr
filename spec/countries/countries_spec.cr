@@ -21,7 +21,7 @@ describe Europe::Countries do
   describe ".find_by" do
     it "finds countries by property value" do
       countries = Europe::Countries.find_by(:currency, "EUR")
-      countries.size.should eq(19)
+      countries.size.should eq(20)
       countries.map(&.code).should contain(:DE)
       countries.map(&.code).should contain(:FR)
       countries.map(&.code).should_not contain(:UK)
@@ -33,7 +33,7 @@ describe Europe::Countries do
       eurozone = Europe::Countries.eurozone
       eurozone.should contain(:DE)
       eurozone.should_not contain(:UK)
-      eurozone.size.should eq(19)
+      eurozone.size.should eq(20)
     end
   end
 
@@ -46,7 +46,7 @@ describe Europe::Countries do
 
     it "generates reversed lookup by currency" do
       reversed_currency_hash = Europe::Countries::Reversed.generate(:currency)
-      reversed_currency_hash["EUR"].as(Array).size.should eq(19)
+      reversed_currency_hash["EUR"].as(Array).size.should eq(20)
       reversed_currency_hash["EUR"].as(Array).should contain(:DE)
     end
   end

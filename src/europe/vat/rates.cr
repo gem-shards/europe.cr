@@ -1,17 +1,17 @@
 require "http/client"
-require "xml"
+require "json"
 
 module Europe
   module Vat
     module Rates
       FALLBACK_RATES = {
         "AT" => 20.0, "BE" => 21.0, "BG" => 20.0, "CY" => 19.0, "CZ" => 21.0, "DE" => 19.0, "DK" => 25.0,
-        "EE" => 22.0, "EL" => 24.0, "ES" => 21.0, "FI" => 25.5, "FR" => 20.0, "HR" => 25.0,
+        "EE" => 24.0, "EL" => 24.0, "ES" => 21.0, "FI" => 25.5, "FR" => 20.0, "HR" => 25.0,
         "HU" => 27.0, "IE" => 23.0, "IT" => 22.0, "LT" => 21.0, "LU" => 17.0, "LV" => 21.0, "MT" => 18.0,
-        "NL" => 21.0, "PL" => 23.0, "PT" => 23.0, "RO" => 19.0, "SE" => 25.0, "SI" => 22.0, "SK" => 23.0
+        "NL" => 21.0, "PL" => 23.0, "PT" => 23.0, "RO" => 21.0, "SE" => 25.0, "SI" => 22.0, "SK" => 23.0
       }
-      RATES_URL = "https://europa.eu/youreurope/business/taxation/vat" \
-                  "/vat-rules-rates/index_en.htm"
+      RATES_URL = "https://raw.githubusercontent.com/benbucksch/eu-vat-rates" \
+                  "/refs/heads/master/rates.json"
 
       # HTTP timeout in seconds
       HTTP_TIMEOUT = 10.seconds
@@ -41,58 +41,15 @@ module Europe
         end
       end
 
-      def self.extract_rates(html_content : String)
+      def self.extract_rates(json_content : String)
         rates = {} of String => Float64
 
         begin
-          # Extract the table body content
-          tbody_match = html_content.scan(%r{\<tbody\>(.*?)\<\/tbody\>}m).first?
-
-          return FALLBACK_RATES unless tbody_match && tbody_match.captures.first?
-
-          data = tbody_match.captures.first
-          return FALLBACK_RATES if data.nil? || data.empty?
-
-          # Parse the HTML
-          xml = XML.parse_html(data)
-
-          # Safety checks for XML structure
-          return FALLBACK_RATES if xml.nil? || xml.children.empty? || xml.children.size < 2
-          return FALLBACK_RATES if xml.children[1].children.empty? || xml.children[1].children.size < 1
-
-          # Extract rates from table rows
-          xml.children[1].children[0].children.each_with_index do |result, index|
-            # Skip header rows and empty rows
-            next if index < 3
-            next if result.children.empty?
-
-            # Safety checks for row structure
-            next if result.children.size < 1 || result.children[0].children.empty?
-            next if result.children.size < 4 || result.children[3].children.empty?
-
-            # Get country code from country name
-            country_name = result.children[0].children[0].to_s
-            country_map = Europe::Countries::Reversed.generate(:name)
-
-            # Skip if country name is not found in the map
-            next unless country_map.has_key?(country_name)
-
-            country_code = country_map[country_name]
-
-            # Extract and convert rate to float
-            rate_text = result.children[3].children[0].to_s
-            begin
-              # Try to parse as float first (handles decimal points)
-              rates[country_code.to_s] = rate_text.to_f
-            rescue
-              # Fall back to integer parsing if float parsing fails
-              begin
-                rates[country_code.to_s] = rate_text.to_i32.to_f
-              rescue
-                # Skip this entry if parsing fails
-                next
-              end
-            end
+          JSON.parse(json_content)["rates"].as_h.each do |code, data|
+            # Source uses ISO "GR", this library uses VIES "EL" for Greece
+            code = "EL" if code == "GR"
+            rate = data["standard_rate"]
+            rates[code] = rate.as_f? || rate.as_i.to_f
           end
 
           # Return fallback rates if we couldn't extract any valid rates
